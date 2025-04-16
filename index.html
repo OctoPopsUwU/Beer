@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ site.title }}</title>
+  <style>
+    .beer-img {
+      max-width: 100px;
+      height: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .beer-entry {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+  </header>
+  <main>
+    <h2>Liste der Bierflaschen</h2>
+    <ul>
+      {% for key, beer in site.data.beers %}
+      <li class="beer-entry">
+        <img class="beer-img" src="{{ beer.image }}" alt="{{ beer.name }}">
+        <strong>{{ beer.name }}</strong> – {{ beer.brewery }} ({{ beer.type }}, {{ beer.abv }}% ABV)
+        <br>
+        ID: {% if beer.barcode %}{{ beer.barcode }}{% else %}{{ beer.id }}{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+  <footer>
+    <p>Erstellt mit Jekyll auf GitHub Pages</p>
+  </footer>
+</body>
+</html>
